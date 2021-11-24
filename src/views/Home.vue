@@ -8,8 +8,8 @@ export default {
   computed: {
     ...mapState(["posts"]),
   },
-  created() {
-    this.fetchPosts()
+  async created() {
+    await this.fetchPosts()
   },
   methods: {
     ...mapActions(["fetchPosts", "login"]),
@@ -23,13 +23,13 @@ export default {
 <template>
   <div class="home">
     <button @click="login">Login</button>
-    <form action="https://blog-api-cihat.herokuapp.com" method="POST">
+    <!-- <form action="https://blog-api-cihat.herokuapp.com" method="POST">
       <label for="username">Username</label>
       <input name="username" placeholder="username" type="text" />
       <br />
       <label for="password">Password</label>
       <input name="password" type="password" /><button>Log In</button>
-    </form>
+    </form> -->
     <Dashboard />
   </div>
 </template>
