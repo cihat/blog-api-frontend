@@ -1,8 +1,10 @@
 import { createStore } from "vuex"
 import axios from "axios"
 
+console.log(process.env.VUE_APP_API_KEY)
+
 const axiosInstance = axios.create({
-  baseURL: "https://blog-api-cihat.herokuapp.com/",
+  baseURL: process.env.VUE_APP_API_KEY,
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
