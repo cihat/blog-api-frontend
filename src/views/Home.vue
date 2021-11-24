@@ -1,18 +1,35 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
-</template>
-
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Dashboard from "@/views/Dashboard.vue"
+import { mapState, mapActions } from "vuex"
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
+  computed: {
+    ...mapState(["posts"]),
   },
-};
+  created() {
+    this.fetchPosts()
+  },
+  methods: {
+    ...mapActions(["fetchPosts", "login"]),
+  },
+  components: {
+    Dashboard,
+  },
+}
 </script>
+
+<template>
+  <div class="home">
+    <button @click="login">Login</button>
+    <form action="https://blog-api-cihat.herokuapp.com" method="POST">
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" type="text" />
+      <br />
+      <label for="password">Password</label>
+      <input name="password" type="password" /><button>Log In</button>
+    </form>
+    <Dashboard />
+  </div>
+</template>
